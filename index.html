@@ -1,14 +1,86 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sv">
-<head>
-    <meta charset="UTF-8">
-    <title>Lila Eld Animation</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-</head>
-<body>
-    <canvas id="canvas"></canvas>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mörklila sida med animerad eld</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrap bottom-safe">
+      <h1>Cool mörklila sida</h1>
+      <p class="lead">En mörklila bakgrund med lila/rosa animerad eld längst ner 🔥</p>
+    </div>
+
+    <!-- Elden -->
+    <div class="flame-wrap" aria-hidden="true">
+      <!-- Lager 1 -->
+      <svg class="flame-layer lite" viewBox="0 0 1200 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gLite" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stop-color="var(--flame-color-1)" stop-opacity="0.0" />
+            <stop offset="30%" stop-color="var(--flame-color-1)" stop-opacity="0.6" />
+            <stop offset="65%" stop-color="var(--flame-color-2)" stop-opacity="0.35" />
+            <stop offset="100%" stop-color="var(--flame-color-2)" stop-opacity="0" />
+          </linearGradient>
+          <filter id="turbLite">
+            <feTurbulence type="fractalNoise" baseFrequency="0.009" numOctaves="3" seed="12" result="noise">
+              <animate attributeName="baseFrequency" dur="6s" values="0.009;0.02;0.009" repeatCount="indefinite" />
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="28">
+              <animate attributeName="scale" dur="4.2s" values="18;32;18" repeatCount="indefinite" />
+            </feDisplacementMap>
+          </filter>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#gLite)" filter="url(#turbLite)"></rect>
+      </svg>
+
+      <!-- Lager 2 -->
+      <svg class="flame-layer base" viewBox="0 0 1200 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gBase" x1="0" x2="1">
+            <stop offset="0%" stop-color="var(--flame-color-3)" stop-opacity="0" />
+            <stop offset="20%" stop-color="var(--flame-color-3)" stop-opacity="0.85" />
+            <stop offset="50%" stop-color="var(--flame-color-1)" stop-opacity="0.95" />
+            <stop offset="85%" stop-color="var(--flame-color-2)" stop-opacity="0.6" />
+            <stop offset="100%" stop-color="var(--flame-color-2)" stop-opacity="0" />
+          </linearGradient>
+          <filter id="turbBase">
+            <feTurbulence type="fractalNoise" baseFrequency="0.0065" numOctaves="4" seed="7" result="n2">
+              <animate attributeName="baseFrequency" dur="5.8s" values="0.0065;0.015;0.0065" repeatCount="indefinite" />
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="n2" scale="36">
+              <animate attributeName="scale" dur="4.6s" values="24;48;24" repeatCount="indefinite" />
+            </feDisplacementMap>
+          </filter>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#gBase)" filter="url(#turbBase)"></rect>
+      </svg>
+
+      <!-- Lager 3 -->
+      <svg class="flame-layer deep" viewBox="0 0 1200 260" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gDeep" x1="0" x2="1">
+            <stop offset="0%" stop-color="var(--flame-color-2)" stop-opacity="0.0" />
+            <stop offset="25%" stop-color="var(--flame-color-1)" stop-opacity="0.6" />
+            <stop offset="55%" stop-color="var(--flame-color-3)" stop-opacity="0.9" />
+            <stop offset="95%" stop-color="var(--flame-color-2)" stop-opacity="0.15" />
+          </linearGradient>
+          <filter id="turbDeep">
+            <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="22" result="n3">
+              <animate attributeName="baseFrequency" dur="4.3s" values="0.012;0.02;0.012" repeatCount="indefinite" />
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="n3" scale="20">
+              <animate attributeName="scale" dur="3.9s" values="12;28;12" repeatCount="indefinite" />
+            </feDisplacementMap>
+          </filter>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#gDeep)" filter="url(#turbDeep)"></rect>
+      </svg>
+    </div>
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
+
 
