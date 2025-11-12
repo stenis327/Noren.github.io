@@ -1,7 +1,7 @@
 :root {
   --bg-top: #0b0028;
   --bg-bottom: #15002f;
-  --flame-height: 260px;
+  --fire-height: 260px;
 }
 
 html, body {
@@ -19,46 +19,18 @@ html, body {
   text-align: center;
   padding: 0 20px;
 }
-.bottom-safe { padding-bottom: calc(var(--flame-height) + 80px); }
+.bottom-safe { padding-bottom: calc(var(--fire-height) + 80px); }
 
-/* Eldväggen längst ned */
-.flame-wall {
+/* Canvas för eld */
+#fireCanvas {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: var(--flame-height);
-  overflow: hidden;
+  height: var(--fire-height);
   pointer-events: none;
   z-index: 5;
 }
-
-.flame-wall svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  mix-blend-mode: screen;
-  opacity: 0.9;
-  transform-origin: bottom center;
-  animation: wallFlicker 4s ease-in-out infinite;
-  filter: blur(4px);
-}
-
-/* Lätt fladdrande rörelse upp och ned */
-@keyframes wallFlicker {
-  0%   { transform: scaleY(1) translateY(0); opacity: 0.9; }
-  25%  { transform: scaleY(1.05) translateY(-3px); opacity: 1; }
-  50%  { transform: scaleY(0.97) translateY(1px); opacity: 0.85; }
-  75%  { transform: scaleY(1.03) translateY(-2px); opacity: 0.95; }
-  100% { transform: scaleY(1) translateY(0); opacity: 0.9; }
-}
-
-/* Mindre eld på mobil */
-@media (max-width: 600px) {
-  :root { --flame-height: 180px; }
-}
-
-
 
 
 
