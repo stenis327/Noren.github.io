@@ -1,14 +1,84 @@
-body {
-    margin: 0;
-    overflow: hidden;
-    background: linear-gradient(to bottom, #1a0a2b, #4c2a68);
+:root {
+  --bg-top: #0b0028;
+  --bg-bottom: #14002a;
+  --flame-color-1: #9b3cff;
+  --flame-color-2: #ff68d4;
+  --flame-color-3: #6b2cff;
+  --flame-height: 220px;
+  --flame-opacity: 0.95;
 }
-#canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: "Inter", system-ui, sans-serif;
+  background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+  color: #f3eaff;
+  overflow-x: hidden;
 }
+
+/* Innehåll */
+.wrap {
+  max-width: 800px;
+  margin: 80px auto;
+  text-align: center;
+  padding: 0 20px;
+}
+h1 { font-size: 2.5rem; margin-bottom: 0.4em; }
+p.lead { opacity: 0.8; }
+.bottom-safe { padding-bottom: calc(var(--flame-height) + 60px); }
+
+/* Elden */
+.flame-wrap {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  height: var(--flame-height);
+  pointer-events: none;
+  z-index: 10;
+  overflow: visible;
+}
+.flame-layer {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 100%;
+  width: 100%;
+  filter: blur(10px) saturate(150%);
+  mix-blend-mode: screen;
+  opacity: var(--flame-opacity);
+}
+.flame-layer.lite {
+  filter: blur(6px);
+  opacity: 0.7;
+  animation: flickerSoft 3s ease-in-out infinite;
+}
+.flame-layer.base {
+  animation: sway 5s ease-in-out infinite;
+}
+.flame-layer.deep {
+  filter: blur(16px);
+  opacity: 0.85;
+  animation: flickerDeep 4s ease-in-out infinite;
+}
+
+@keyframes flickerSoft {
+  0%,100% { transform: translateY(4px) scaleY(1); opacity: 0.7; }
+  50% { transform: translateY(0) scaleY(1.05); opacity: 0.9; }
+}
+@keyframes flickerDeep {
+  0% { transform: translateY(0) scaleY(1); opacity: 0.9; }
+  50% { transform: translateY(-6px) scaleY(1.05); opacity: 1; }
+  100% { transform: translateY(2px) scaleY(0.98); opacity: 0.8; }
+}
+@keyframes sway {
+  0% { transform: rotate(-0.4deg); }
+  50% { transform: rotate(0.6deg); }
+  100% { transform: rotate(-0.4deg); }
+}
+
+/* Mindre eld på mobil */
+@media (max-width: 600px) {
+  :root { --flame-height: 140px; }
+}
+
 
 
