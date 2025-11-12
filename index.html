@@ -1,46 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="sv">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Lila/Rosa Eld</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="wrap bottom-safe">
-      <h1>Rå lila / rosa flammor 🔥</h1>
-      <p class="lead">Eld som fladdrar längst hela botten.</p>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lila/Rosa Eld</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap bottom-safe">
+    <h1>Rå lila / rosa flammor 🔥</h1>
+    <p class="lead">En verklig eld med fladdrande flammor längst ned.</p>
+  </div>
 
-    <!-- 🔥 Eldvägg -->
-    <div class="flame-wall">
-      <svg viewBox="0 0 1200 300" preserveAspectRatio="none">
-        <defs>
-          <!-- Gradient som skiftar mellan lila och rosa -->
-          <linearGradient id="flameGrad" x1="0" y1="1" x2="0" y2="0">
-            <stop offset="0%" stop-color="#9b3cff" />
-            <stop offset="40%" stop-color="#ff68d4" />
-            <stop offset="100%" stop-color="#ffb5f7" stop-opacity="0.7" />
-          </linearGradient>
+  <!-- Canvas för eld -->
+  <canvas id="fireCanvas"></canvas>
 
-          <!-- Turbulens som får lågor att fladdra -->
-          <filter id="flameAnim">
-            <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" seed="8" result="noise">
-              <animate attributeName="baseFrequency" dur="4s" values="0.015;0.03;0.015" repeatCount="indefinite" />
-            </feTurbulence>
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="40">
-              <animate attributeName="scale" dur="3.5s" values="20;60;20" repeatCount="indefinite" />
-            </feDisplacementMap>
-          </filter>
-        </defs>
-
-        <!-- Själva lågområdet -->
-        <rect width="1200" height="300" fill="url(#flameGrad)" filter="url(#flameAnim)" />
-      </svg>
-    </div>
-
-    <script src="script.js"></script>
-  </body>
+  <script src="script.js"></script>
+</body>
 </html>
 
 
