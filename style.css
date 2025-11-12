@@ -1,7 +1,7 @@
 :root {
   --bg-top: #0b0028;
-  --bg-bottom: #14002a;
-  --flame-height: 200px;
+  --bg-bottom: #15002f;
+  --flame-height: 260px;
 }
 
 html, body {
@@ -13,19 +13,16 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Innehåll */
 .wrap {
   max-width: 800px;
   margin: 80px auto;
   text-align: center;
   padding: 0 20px;
 }
-.bottom-safe {
-  padding-bottom: calc(var(--flame-height) + 60px);
-}
+.bottom-safe { padding-bottom: calc(var(--flame-height) + 80px); }
 
-/* 🔥 Elden */
-.flame-wrap {
+/* Eldväggen längst ned */
+.flame-wall {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -33,61 +30,34 @@ html, body {
   height: var(--flame-height);
   overflow: hidden;
   pointer-events: none;
-  z-index: 10;
+  z-index: 5;
 }
 
-.flame {
-  position: absolute;
-  bottom: 0;
+.flame-wall svg {
   width: 100%;
-  height: 120%;
-  background: radial-gradient(circle at 50% 100%, #ff70df 0%, #a33cff 40%, transparent 70%);
-  opacity: 0.6;
+  height: 100%;
+  display: block;
   mix-blend-mode: screen;
-  transform-origin: center bottom;
-  animation: flameFlicker 3s ease-in-out infinite alternate;
-  filter: blur(20px);
+  opacity: 0.9;
+  transform-origin: bottom center;
+  animation: wallFlicker 4s ease-in-out infinite;
+  filter: blur(4px);
 }
 
-/* Lägg till flera lager för djup */
-.flame::before,
-.flame::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 120%;
-  background: radial-gradient(circle at 40% 100%, #ff87f5 0%, #b74cff 30%, transparent 70%);
-  opacity: 0.5;
-  filter: blur(25px);
-  mix-blend-mode: screen;
-  animation: flameWave 5s ease-in-out infinite alternate;
+/* Lätt fladdrande rörelse upp och ned */
+@keyframes wallFlicker {
+  0%   { transform: scaleY(1) translateY(0); opacity: 0.9; }
+  25%  { transform: scaleY(1.05) translateY(-3px); opacity: 1; }
+  50%  { transform: scaleY(0.97) translateY(1px); opacity: 0.85; }
+  75%  { transform: scaleY(1.03) translateY(-2px); opacity: 0.95; }
+  100% { transform: scaleY(1) translateY(0); opacity: 0.9; }
 }
 
-.flame::after {
-  background: radial-gradient(circle at 60% 100%, #ffb5f7 0%, #9d3cff 30%, transparent 70%);
-  animation-duration: 4s;
-  animation-delay: 1.2s;
-  opacity: 0.4;
-}
-
-/* Animationer */
-@keyframes flameFlicker {
-  0% { transform: scaleY(1) translateY(0); opacity: 0.6; }
-  50% { transform: scaleY(1.2) translateY(-10px); opacity: 0.8; }
-  100% { transform: scaleY(1) translateY(0); opacity: 0.6; }
-}
-@keyframes flameWave {
-  0% { transform: skewX(-3deg) scaleY(1); }
-  50% { transform: skewX(3deg) scaleY(1.3); }
-  100% { transform: skewX(-3deg) scaleY(1); }
-}
-
-/* Mobilanpassning */
+/* Mindre eld på mobil */
 @media (max-width: 600px) {
-  :root { --flame-height: 140px; }
+  :root { --flame-height: 180px; }
 }
+
 
 
 
