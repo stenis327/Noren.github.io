@@ -5,9 +5,10 @@ function setup() {
 }
 
 function draw() {
-    background(0);
+    background(0, 10); // Tålig bakgrund för att skapa en svag "svart" effekt
     let p = new Particle(random(width), height);
     particles.push(p);
+    
     for (let i = particles.length - 1; i >= 0; i--) {
         particles[i].update();
         particles[i].show();
@@ -22,7 +23,7 @@ class Particle {
         this.x = x;
         this.y = y;
         this.lifespan = 255;
-        this.velocity = createVector(random(-1, 1), random(-5, -2));
+        this.velocity = createVector(random(-1, 1), random(-3, -1));
     }
 
     isFinished() {
@@ -30,7 +31,7 @@ class Particle {
     }
 
     update() {
-        this.velocity.y += 0.1; // Gravitation
+        this.velocity.y += 0.05; // Gravitation
         this.x += this.velocity.x;
         this.y += this.velocity.y;
         this.lifespan -= 4;
@@ -39,7 +40,7 @@ class Particle {
     show() {
         noStroke();
         fill(148, 0, 211, this.lifespan);
-        ellipse(this.x, this.y, 12);
+        ellipse(this.x, this.y, 10);
     }
 }
 
