@@ -1,35 +1,42 @@
-:root {
-  --bg-top: #0b0028;
-  --bg-bottom: #15002f;
-  --fire-height: 260px;
+/* Grund */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #0a0013; /* syns om videon laddar */
+    font-family: sans-serif;
 }
 
-html, body {
-  margin: 0;
-  height: 100%;
-  font-family: "Inter", system-ui, sans-serif;
-  background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
-  color: #f3eaff;
-  overflow-x: hidden;
+/* FULLSKÄRMS GLITCH VIDEO */
+#glitch {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    object-fit: cover; /* täcker hela skärmen */
+    z-index: -1; /* lägg bakom all text */
+
+    /* Glitchfärg */
+    mix-blend-mode: screen;
+    filter: hue-rotate(280deg) saturate(2.2) brightness(1.4);
 }
 
-.wrap {
-  max-width: 800px;
-  margin: 80px auto;
-  text-align: center;
-  padding: 0 20px;
+/* Exempeltext på sidan */
+.content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    margin-top: 25vh;
+    color: white;
+    text-shadow: 0 0 20px #ff00ff;
 }
-.bottom-safe { padding-bottom: calc(var(--fire-height) + 80px); }
 
-/* Canvas för eld */
-#fireCanvas {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: var(--fire-height);
-  pointer-events: none;
-  z-index: 5;
+h1 {
+    font-size: 4rem;
+    margin-bottom: 10px;
 }
 
 
