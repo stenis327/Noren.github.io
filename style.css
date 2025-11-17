@@ -36,6 +36,68 @@ body {
 h1 { font-size: 4rem; margin-bottom: 10px; }
 p { font-size: 1.5rem; }
 
+/* bild effekt */
+.glitch-container {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-img {
+  position: relative;
+  animation: glitch 1.5s infinite;
+}
+
+/* Duplicate layers for RGB glitch */
+.glitch-img::before,
+.glitch-img::after {
+  content: "";
+  background: url('Me403.PNG');
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
+.glitch-img::before {
+  animation: glitchTop 1s infinite;
+  filter: hue-rotate(90deg);
+}
+
+.glitch-img::after {
+  animation: glitchBottom 1.2s infinite;
+  filter: hue-rotate(270deg);
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitchTop {
+  0% { clip-path: inset(0 0 80% 0); transform: translate(0); }
+  20% { transform: translate(-3px, -3px); }
+  40% { transform: translate(3px, -1px); }
+  60% { transform: translate(-1px, 3px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitchBottom {
+  0% { clip-path: inset(80% 0 0 0); transform: translate(0); }
+  20% { transform: translate(3px, 3px); }
+  40% { transform: translate(-3px, 2px); }
+  60% { transform: translate(2px, -3px); }
+  100% { transform: translate(0); }
+}
+
+
 /* Canvas för dimma */
 #fog {
   position: fixed;
