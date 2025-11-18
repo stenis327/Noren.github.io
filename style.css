@@ -47,6 +47,52 @@ p { font-size: 1.5rem; }
   animation: glitch 1.5s infinite;
 }
 
+.glitch {
+  position: relative;
+  width: 300px; /* ändra om du vill */
+  height: 300px; /* ändra om du vill */
+  overflow: hidden;
+}
+
+.glitch-img,
+.glitch-img::before,
+.glitch-img::after {
+  background: url("your-image.jpg") center/cover no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-img::before {
+  content: "";
+  left: -2px;
+  animation: glitchTop 0.8s infinite;
+  mix-blend-mode: screen;
+}
+
+.glitch-img::after {
+  content: "";
+  left: 2px;
+  animation: glitchBottom 1s infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes glitchTop {
+  0% { clip-path: inset(0 0 80% 0); transform: translate(0); }
+  30% { transform: translate(-3px, -2px); }
+  60% { transform: translate(3px, 1px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitchBottom {
+  0% { clip-path: inset(80% 0 0 0); transform: translate(0); }
+  30% { transform: translate(3px, 2px); }
+  60% { transform: translate(-2px, -3px); }
+  100% { transform: translate(0); }
+}
+
 /* Duplicate layers for RGB glitch */
 .glitch-img::before,
 .glitch-img::after {
